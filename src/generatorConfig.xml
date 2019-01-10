@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="context">
+		<!-- <plugin type="org.mybatis.generator.plugins.SerializablePlugin" /> -->
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<!-- 
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+						connectionURL="jdbc:mysql://localhost:3306/keysearch" 
+						userId="root" 
+						password="root" />
+		 -->
+		<!-- 【友情提示：建表和字段时，最好都大写，1、我试验的时候表名小写不能自动创建。2、有助于迁移到mysql。】-->
+		
+		<!-- 
+		官方xmll配置:http://www.mybatis.org/generator/configreference/xmlconfig.htmll
+		http://www.mybatis.org/generator/configreference/xmlconfig.html
+		使用Mybatis generator连接oracle去生成代码的时候，
+		报错：Table configuration with catalog null, schema , and table  did not resolve to any tables
+		可能原因之一是：
+		Power Designer 里导出的sql中，带上了双引号。
+		那么为什么用PowerDesigner生成的oracle数据库sql语句的表名和字段名上会出现引号呢？
+		因为,Oracle创建表的一条规则为：
+		在命名表的时候可以使用大写或小写字母。只要表名或字段名没有用双引号括住，Oracle 对大小写就不敏感。Oracle 支持使用双引号的语法。但是，最好不要直接使用双引号。
+		那么怎么让这些引号不出现呢？
+		http://blog.51cto.com/yangyingbin/1363509 
+		-->
+		<jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+						connectionURL="jdbc:oracle:thin:@192.168.2.253:1521:orcl"
+						userId="crawl" 
+						password="crawl" />
+
+		<!-- <javaModelGenerator targetPackage="com.mytest.model" targetProject="D:/MyProgram/eclipse/yanwj/workspace/mybatis_auto/src" /> -->
+		<javaModelGenerator targetPackage="com.mytest.model" targetProject="src" />
+		<sqlMapGenerator targetPackage="com.mytest.dao.mapper" targetProject="src" />
+		<javaClientGenerator targetPackage="com.mytest.dao" targetProject="src" type="XMLMAPPER" />
+		<!-- 数据库对应实体映射关系，确认表是否有主键，没主键就只能生成俩方法 -->
+		<!-- <table tableName="data_source" domainObjectName="DataSource" enableCountByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table> -->
+
+		<table tableName="SSM_USER" domainObjectName="SsmUser"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false"></table>
+	</context>
+</generatorConfiguration>
